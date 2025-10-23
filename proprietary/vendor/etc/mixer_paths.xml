@@ -48,6 +48,8 @@
     <ctl name="ABOX SIFS5 Width" value="16" />
 
     <ctl name="ABOX SIFS0 Channel" value="2" />
+    <!-- SIFS0 channel switch should be configured for mono -->
+    <ctl name="ABOX SIFS0 CH0 Switch" value="0" />
 
     <!-- A-Box Default Configuration for UAIF -->
     <ctl name="ABOX UAIF0 Width" value="16" />
@@ -822,6 +824,18 @@
 
     <path name="route-wdma2-to-sbooster">
         <ctl name="ABOX MCD_SBOTHERS_A" value="WDMA2" />
+    </path>
+
+    <path name="route-wdma2-to-chconv2ch">
+        <ctl name="ABOX CHCONV2CH_A" value="WDMA2" />
+    </path>
+
+    <path name="route-chconv2ch-to-chconv4ch">
+        <ctl name="ABOX CHCONV4CH_A" value="CHCONV2CH" />
+    </path>
+
+    <path name="route-chconv2ch-to-sbooster">
+        <ctl name="ABOX MCD_SBOTHERS_A" value="CHCONV2CH" />
     </path>
 
     <path name="route-sbooster-to-chconv4ch">
@@ -2041,7 +2055,8 @@
         <path name="route-nsrc2-to-wdma2" />
         <path name="route-rdma3-to-sifs0" />
         <path name="route-rdma7-to-sifs1" />
-        <path name="route-wdma2-to-sbooster" />
+        <path name="route-wdma2-to-chconv2ch" />
+        <path name="route-chconv2ch-to-sbooster" />
         <path name="route-sbooster-to-chconv4ch" />
         <!-- remove wdma2 to chconv4ch once Booster controls are enabled -->
         <!--path name="route-wdma2-to-chconv4ch" /-->
@@ -2062,7 +2077,8 @@
         <path name="route-nsrc2-to-wdma2" />
         <path name="route-rdma3-to-sifs0" />
         <path name="route-rdma7-to-sifs1" />
-        <path name="route-wdma2-to-sbooster" />
+        <path name="route-wdma2-to-chconv2ch" />
+        <path name="route-chconv2ch-to-sbooster" />
         <path name="route-sbooster-to-chconv4ch" />
         <!-- remove wdma2 to chconv4ch once Booster controls are enabled -->
         <!--path name="route-wdma2-to-chconv4ch" /-->
@@ -2085,7 +2101,8 @@
         <path name="route-nsrc2-to-wdma2" />
         <path name="route-rdma3-to-sifs0" />
         <path name="route-rdma7-to-sifs1" />
-        <path name="route-wdma2-to-sbooster" />
+        <path name="route-wdma2-to-chconv2ch" />
+        <path name="route-chconv2ch-to-sbooster" />
         <path name="route-sbooster-to-chconv4ch" />
         <!-- remove wdma2 to chconv4ch once Booster controls are enabled -->
         <!--path name="route-wdma2-to-chconv4ch" /-->
@@ -2106,7 +2123,8 @@
         <path name="route-nsrc2-to-wdma2" />
         <path name="route-rdma3-to-sifs0" />
         <path name="route-rdma7-to-sifs1" />
-        <path name="route-wdma2-to-sbooster" />
+        <path name="route-wdma2-to-chconv2ch" />
+        <path name="route-chconv2ch-to-sbooster" />
         <path name="route-sbooster-to-chconv4ch" />
         <!-- remove wdma2 to chconv4ch once Booster controls are enabled -->
         <!--path name="route-wdma2-to-chconv4ch" /-->
@@ -3519,6 +3537,7 @@
     </path>
 
     <path name="media-async-usb-headset-mic">
+        <path name="set-wdma1-16bit-2ch-pdsz2-config" />
         <path name="route-usbincom-enable" />
         <path name="route-usbincom-to-rdma10" />
         <path name="set-sifs3-stereochannel-selection" />
